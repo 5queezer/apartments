@@ -40,11 +40,11 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    'nuxt-fontawesome',
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/font-awesome'
   ],
   /*
   ** Axios module configuration
