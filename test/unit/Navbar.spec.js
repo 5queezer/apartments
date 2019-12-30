@@ -8,21 +8,15 @@ const localVue = createLocalVue()
 localVue.use(Bootstrap)
 
 describe('Page Elements', () => {
-  test('Logo', () => {
-    const logo = shallowMount(Logo)
-    expect(logo.isVueInstance()).toBeTruthy()
-  })
+  let navbar
+  const options = { localVue }
 
   test('Navbar', () => {
-    const options = { localVue }
-    const navbar = mount(Navbar, options)
+    navbar = mount(Navbar, options)
     expect(navbar.isVueInstance()).toBeTruthy()
   })
 
-  test('Search field', () => {
-    const options = { localVue }
-
-    const navbar = mount(Navbar, options)
+  test('Search field exists', () => {
     const search = navbar.find(Search)
     expect(search.is(Search)).toBe(true)
   })
