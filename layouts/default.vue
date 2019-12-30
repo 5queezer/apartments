@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-cloak>
     <nuxt />
   </div>
 </template>
@@ -51,5 +51,13 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.navbar {
+  list-style-type: none;
 }
 </style>
