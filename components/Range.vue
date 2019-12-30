@@ -10,11 +10,11 @@
         </b-col>
       </b-form-row>
       <b-form-row>
-        {{ min }} - {{ max }}
+        <b-col>
+          {{ min | locale }} {{ append }} - {{ max | locale }} {{ append }}
+        </b-col>
       </b-form-row>
     </b-dropdown-form>
-    <b-dropdown-form />
-    <b-dropdown-form />
   </b-nav-item-dropdown>
 </template>
 
@@ -22,8 +22,13 @@
 import _ from 'underscore'
 
 export default {
+  filters: {
+    locale (item) {
+      return item ? item.toLocaleString() : ''
+    }
+  },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['label', 'unit', 'values'],
+  props: ['label', 'append', 'values'],
   data: () => {
     return {
       min: undefined,
@@ -33,7 +38,10 @@ export default {
   computed: {
     data () {
       return _.map(this.values, (value) => {
-        return { value, text: value }
+        return {
+          value,
+          text: this.$options.filters.locale(value)
+        }
       })
     }
   }

@@ -15,12 +15,16 @@
         <range
           :values="priceRange"
           label="Price"
-          unit="€"
+          append="€"
         />
       </b-navbar-nav>
 
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form2" text="Area" class="m-2" />
+        <range
+          :values="areaRange"
+          label="Area"
+          append="m²"
+        />
       </b-navbar-nav>
       <b-navbar-nav>
         <b-nav-item-dropdown id="dropdown-form3" ref="dropdown" text="Bedrooms" class="m-2" />
