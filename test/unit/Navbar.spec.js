@@ -20,4 +20,14 @@ describe('Page Elements', () => {
     const search = navbar.find(Search)
     expect(search.is(Search)).toBe(true)
   })
+
+  test('price range matches', () => {
+    const range = navbar.vm.$props.priceRange
+    expect(range).toMatchSnapshot()
+  })
+
+  test('area range matches', () => {
+    const range = navbar.vm.$props.areaRange
+    expect(range).toMatchSnapshot()
+  })
 })
