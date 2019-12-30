@@ -1,21 +1,19 @@
 <template>
-  <b-nav-item-dropdown id="dropdown-form-price" :text="label" class="m-2">
-    <b-dropdown-form>
-      <b-form-row>
-        <b-col>
-          <b-form-select v-model="min" :options="data" />
-        </b-col>
-        <b-col>
-          <b-form-select v-model="max" :options="data" />
-        </b-col>
-      </b-form-row>
-      <b-form-row>
-        <b-col>
-          {{ min | locale }} {{ append }} - {{ max | locale }} {{ append }}
-        </b-col>
-      </b-form-row>
-    </b-dropdown-form>
-  </b-nav-item-dropdown>
+  <div>
+    <b-form-row>
+      <b-col>
+        <b-form-select v-model="min" :options="data" />
+      </b-col>
+      <b-col>
+        <b-form-select v-model="max" :options="data" />
+      </b-col>
+    </b-form-row>
+    <b-form-row>
+      <b-col>
+        {{ min | locale }} {{ append }} - {{ max | locale }} {{ append }}
+      </b-col>
+    </b-form-row>
+  </div>
 </template>
 
 <script>
