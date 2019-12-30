@@ -1,16 +1,63 @@
 <template>
-  <b-navbar type="dark" variant="light">
+  <b-navbar type="light" variant="light" toggleable="lg">
     <b-nav-form>
-      <b-input-group class="mt-3">
-        <template v-slot:append>
-          <b-input-group-text><i class="fa fa-search" aria-label="Search" /></b-input-group-text>
-        </template>
-        <b-form-input />
-      </b-input-group>
+      <search />
     </b-nav-form>
-    <b-nav-item />
+
+    <b-navbar-toggle target="nav-collapse">
+      <b-nav-text>
+        Filter <i class="fa fa-chevron-down" />
+      </b-nav-text>
+    </b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <range
+          :values="priceRange"
+          label="Price"
+          unit="€"
+        />
+      </b-navbar-nav>
+
+      <b-navbar-nav>
+        <b-nav-item-dropdown id="dropdown-form2" text="Area" class="m-2" />
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item-dropdown id="dropdown-form3" ref="dropdown" text="Bedrooms" class="m-2" />
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item-dropdown id="dropdown-form4" ref="dropdown" text="Bathroms" class="m-2" />
+      </b-navbar-nav>
+    </b-collapse>
   </b-navbar>
 </template>
 
+<script>
+import _ from 'underscore'
+import Search from '~/components/Search.vue'
+import Range from '~/components/Range.vue'
+
+export default {
+  components: {
+    Search,
+    Range
+  },
+  props: {
+    priceRange: {
+      type: Array,
+      default () { return _.range(0, 350e3, 25e3).concat(_.range(350e3, 600e3, 50e3)) }
+    },
+    areaRange: {
+      type: Array,
+      default () { return _.range(0, 40, 5).concat(_.range(40, 151, 10)).concat(200, 300) }
+    }
+  }
+}
+</script>
+
 <style>
+.input-group > .form-control:not(:last-child), .input-group > .custom-select:not(:last-child) {
+  border-right: 0;
+}
+
 </style>

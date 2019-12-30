@@ -2,12 +2,12 @@
   <b-container fluid>
     <b-row>
       <b-col>
-        <!-- logo /-->
+        <logo />
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <!-- navbar /-->
+        <navbar />
       </b-col>
     </b-row>
     <b-row>
@@ -18,13 +18,13 @@
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// import Navbar from '~/components/Navbar.vue'
+import Logo from '~/components/Logo.vue'
+import Navbar from '~/components/Navbar.vue'
 
 export default {
   components: {
-    // Logo
-    // Navbar
+    Logo,
+    Navbar
   }
 }
 </script>
