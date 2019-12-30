@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="PojoniLogo">
-      <span class="text-primary">pojoni</span>
-      <span class="text-secondary">code challenge</span>
-    </div>
+  <div class="PojoniLogo">
+    <span class="text-primary">pojoni</span>
+    <span class="text-secondary">code challenge</span>
   </div>
 </template>
 <style>
