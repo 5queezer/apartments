@@ -5,8 +5,8 @@ export default {
     return new Promise(async (resolve, reject) => {
       try {
         const apartments = await api.getApartments()
-        console.log(apartments)
-        for (const a of apartments || []) {
+
+        for (const a of apartments) {
           commit('SET_APARTMENT', a)
         }
         resolve(apartments)
