@@ -1,6 +1,5 @@
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import Bootstrap from 'bootstrap-vue'
-import Logo from '@/components/Logo.vue'
 import Navbar from '@/components/Navbar.vue'
 import Search from '@/components/Search.vue'
 
