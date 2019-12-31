@@ -1,6 +1,5 @@
 import flushPromises from 'flush-promises'
 import apartmentsFixture from './fixtures/apartments'
-import api from '@/assets/api.faker'
 import actions from '@/store/actions'
 
 describe('Store actions', () => {
