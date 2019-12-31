@@ -19,14 +19,18 @@ const ApartmentSpec = createSpec({
 
 const fixtures10 = new Promise(function (resolve, reject) {
   const result = []
-  for (let i = 0; i < 10; i++) {
-    const fixture = ApartmentSpec.generate()
-    fixture.id = i
-    fixture.price *= 1000
-    if (fixture.bathrooms > fixture.bedrooms) {
-      [fixture.bathrooms, fixture.bedrooms] = [fixture.bedrooms, fixture.bathrooms]
+  try {
+    for (let i = 0; i < 10; i++) {
+      const fixture = ApartmentSpec.generate()
+      fixture.id = i
+      fixture.price *= 1000
+      if (fixture.bathrooms > fixture.bedrooms) {
+        [fixture.bathrooms, fixture.bedrooms] = [fixture.bedrooms, fixture.bathrooms]
+      }
+      result.push(fixture)
     }
-    result.push(fixture)
+  } catch (e) {
+    reject(e)
   }
 
   // simulate network lag of 100ms and return result

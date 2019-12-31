@@ -11,5 +11,8 @@ export default {
         long: apartment.get.long
       }
     })
+  },
+  SET_APARTMENTS (state, apartments) {
+    for (const a of apartments) { this.SET_APARTMENT(a) }
   }
 }

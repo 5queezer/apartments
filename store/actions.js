@@ -4,11 +4,8 @@ export default {
   FETCH_APARTMENTS ({ commit }) {
     return new Promise(async (resolve, reject) => {
       try {
-        const apartments = await api.getApartments()
-
-        for (const a of apartments) {
-          commit('SET_APARTMENT', a)
-        }
+        const apartments = (await api.getApartments()) || reject(new Error('api.getApartments() result is empty'))
+        commit('SET_APARTMENTS', apartments)
         resolve(apartments)
       } catch (error) {
         reject(error)
