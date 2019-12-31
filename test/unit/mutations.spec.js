@@ -4,41 +4,29 @@ import initialState from '@/store/state'
 
 describe('Mutations', () => {
   let state
-  const apartment = apartments[0]
-  const expectedApartment = {
-    id: 0,
-    title: apartment.title,
-    price: apartment.price,
-    bedrooms: apartment.bedrooms,
-    bathrooms: apartment.bathrooms,
-    picture: apartment.picture,
-    address: {
-      city: apartment.address.city,
-      zip: apartment.address.zip,
-      street: apartment.address.street,
-      lat: apartment.address.lat,
-      long: apartment.address.long
-    }
-  }
 
   beforeEach(() => {
-    state = { ...initialState }
+    // reset state with deep copy
+    state = { ...JSON.parse(JSON.stringify(initialState)) }
   })
 
   it('adds a new apartment', () => {
     // act
-    mutations.SET_APARTMENT(state, apartment)
+    mutations.SET_APARTMENT(state, apartments[0])
 
     // assert
     expect(state.apartments.length).toBe(1)
-    expect(state.apartments[0]).toEqual(expectedApartment)
+    expect(state.apartments[0]).toEqual(apartments[0])
   })
 
   it('throws error with entry of same id', () => {
     // act
-    const mutation = () => { mutations.SET_APARTMENT(state, apartment) }
+    const m = (apartment) => { mutations.SET_APARTMENT(state, apartment) }
+
+    // first call
+    expect(() => m({ ...apartments[0], id: 0 })).not.toThrowError()
 
     // second call
-    expect(mutation).toThrowErrorMatchingSnapshot()
+    expect(() => m({ ...apartments[1], id: 0 })).toThrowErrorMatchingSnapshot()
   })
 })
