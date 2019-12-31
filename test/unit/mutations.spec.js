@@ -4,6 +4,7 @@ import initialState from '@/store/state'
 
 describe('Mutations', () => {
   let state
+  const apartment = apartments[0]
 
   beforeEach(() => {
     state = { ...initialState }
@@ -12,23 +13,23 @@ describe('Mutations', () => {
   it('adds a new apartment', () => {
     // arrange
     const expectedApartment = {
-      title: apartments[0].title,
-      price: apartments[0].price,
-      bedrooms: apartments[0].bedrooms,
-      bathrooms: apartments[0].bathrooms,
-      picture: apartments[0].picture,
+      id: 0,
+      title: apartment.title,
+      price: apartment.price,
+      bedrooms: apartment.bedrooms,
+      bathrooms: apartment.bathrooms,
+      picture: apartment.picture,
       address: {
-        city: apartments[0].address.city,
-        zip: apartments[0].address.zip,
-        street: apartments[0].address.street,
-        lat: apartments[0].address.lat,
-        long: apartments[0].address.long
-      },
-      id: 0
+        city: apartment.address.city,
+        zip: apartment.address.zip,
+        street: apartment.address.street,
+        lat: apartment.address.lat,
+        long: apartment.address.long
+      }
     }
 
     // act
-    mutations.SET_APARTMENT(state, apartments[0])
+    mutations.SET_APARTMENT(state, apartment)
 
     // assert
     expect(state.apartments.length).toBe(1)

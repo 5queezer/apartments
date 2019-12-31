@@ -8,11 +8,11 @@ describe('Api', () => {
     await flushPromises()
   })
 
-  it('fetches the data', async () => {
+  it('fetches the data', () => {
     expect(result.length).toEqual(10)
   })
 
-  it('matches the snapshot', async () => {
+  it('matches the snapshot', () => {
     expect(result).toMatchSnapshot()
   })
 })
