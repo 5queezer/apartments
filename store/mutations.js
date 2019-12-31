@@ -1,7 +1,10 @@
 export default {
   SET_APARTMENT (state, apartment) {
+    for (const a of state.apartments) {
+      if (a.id === apartment.id) { throw new Error('double entry') }
+    }
     state.apartments.push({
-      id: state.apartments.length,
+      id: apartment.id,
       title: apartment.title,
       price: apartment.price,
       bedrooms: apartment.bedrooms,
