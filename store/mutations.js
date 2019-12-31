@@ -1,14 +1,18 @@
 export default {
   SET_APARTMENT (state, apartment) {
     state.apartments.push({
+      id: state.apartments.length,
       title: apartment.title,
       price: apartment.price,
       bedrooms: apartment.bedrooms,
       bathrooms: apartment.bathrooms,
       picture: apartment.picture,
-      geo: {
-        lat: apartment.geo.lat,
-        long: apartment.get.long
+      address: {
+        city: apartment.address.city,
+        zip: apartment.address.zip,
+        street: apartment.address.street,
+        lat: apartment.address.lat,
+        long: apartment.address.long
       }
     })
   },
