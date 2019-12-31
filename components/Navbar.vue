@@ -13,22 +13,26 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item-dropdown id="dropdown-form-price" text="Price" class="m-2">
-          <range
-            :values="priceRange"
-            label="Price"
-            append="€"
-          />
+          <b-dropdown-form>
+            <b-form-row>
+              <range
+                :values="priceRange"
+                append="€"
+              />
+            </b-form-row>
+          </b-dropdown-form>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
       <b-navbar-nav>
         <b-nav-item-dropdown id="dropdown-form-area" text="Area" class="m-2">
           <b-dropdown-form>
-            <range
-              :values="areaRange"
-              label="Area"
-              append="m²"
-            />
+            <b-form-row>
+              <range
+                :values="areaRange"
+                append="m²"
+              />
+            </b-form-row>
           </b-dropdown-form>
         </b-nav-item-dropdown>
       </b-navbar-nav>

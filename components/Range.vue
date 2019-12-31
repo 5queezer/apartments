@@ -1,18 +1,11 @@
 <template>
   <div>
-    <b-form-row>
-      <b-col>
-        <b-form-select v-model="min" :options="data" />
-      </b-col>
-      <b-col>
-        <b-form-select v-model="max" :options="data" />
-      </b-col>
-    </b-form-row>
-    <b-form-row>
-      <b-col>
-        {{ min | locale }} {{ append }} - {{ max | locale }} {{ append }}
-      </b-col>
-    </b-form-row>
+    <b-col>
+      <b-form-select v-model="min" :options="data" />
+    </b-col>
+    <b-col>
+      <b-form-select v-model="max" :options="data" />
+    </b-col>
   </div>
 </template>
 
@@ -26,7 +19,7 @@ export default {
     }
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['label', 'append', 'values'],
+  props: ['append', 'values'],
   data: () => {
     return {
       min: undefined,
@@ -38,7 +31,8 @@ export default {
       return _.map(this.values, (value) => {
         return {
           value,
-          text: this.$options.filters.locale(value)
+          text: value ? `${this.$options.filters.locale(value)} ${this.append}` : '',
+          disabled: !value
         }
       })
     }
