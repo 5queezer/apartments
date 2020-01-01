@@ -12,7 +12,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form-price" text="Price" class="m-2">
+        <b-nav-item-dropdown id="dropdown-form-price" text="Price">
           <b-dropdown-form>
             <b-form-row>
               <range
@@ -25,7 +25,7 @@
       </b-navbar-nav>
 
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form-area" text="Area" class="m-2">
+        <b-nav-item-dropdown text="Area">
           <b-dropdown-form>
             <b-form-row>
               <range
@@ -37,10 +37,28 @@
         </b-nav-item-dropdown>
       </b-navbar-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form3" ref="dropdown" text="Bedrooms" class="m-2" />
+        <b-nav-item-dropdown ref="dropdown" text="Bedrooms">
+          <b-dropdown-form>
+            <b-form-radio-group
+              v-model="bedrooms"
+              :options="bedroomRange"
+              :selected="bedroomRange[0]"
+              buttons
+            />
+          </b-dropdown-form>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form4" ref="dropdown" text="Bathroms" class="m-2" />
+        <b-nav-item-dropdown id="dropdown-form4" ref="dropdown" text="Bathroms">
+          <b-dropdown-form>
+            <b-form-radio-group
+              v-model="bathrooms"
+              :options="bathroomRange"
+              :selected="bathroomRange[0]"
+              buttons
+            />
+          </b-dropdown-form>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -64,14 +82,27 @@ export default {
     areaRange: {
       type: Array,
       default () { return _.range(0, 40, 5).concat(_.range(40, 151, 10)).concat(200, 300) }
+    },
+    bedroomRange: {
+      type: Array,
+      default () { return [{ text: 'All', value: undefined }].concat(_.range(1, 6)) }
+    },
+    bathroomRange: {
+      type: Array,
+      default () { return [{ text: 'All', value: undefined }].concat(_.range(1, 6)) }
+    }
+  },
+  data () {
+    return {
+      bedrooms: undefined,
+      bathrooms: undefined
     }
   }
 }
 </script>
 
 <style>
-.input-group > .form-control:not(:last-child), .input-group > .custom-select:not(:last-child) {
-  border-right: 0;
+#nav-collapse {
+  justify-content: space-around;
 }
-
 </style>

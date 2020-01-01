@@ -39,8 +39,3 @@ export default {
   }
 }
 </script>
-<style>
-.dropdown {
-  width: max-content;
-}
-</style>
