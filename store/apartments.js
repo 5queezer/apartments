@@ -1,15 +1,15 @@
 import api from '@/assets/api.faker'
 
 export const state = () => ({
-  apartments: []
+  list: []
 })
 
 export const mutations = {
   add (state, apartment) {
-    for (const entry of state.apartments) {
+    for (const entry of state.list) {
       if (entry.id === apartment.id) { throw (new Error('double entry')) }
     }
-    state.apartments.push({
+    state.list.push({
       id: apartment.id,
       title: apartment.title,
       price: apartment.price,
@@ -45,6 +45,6 @@ export const actions = {
 
 export const getters = {
   list: (state) => {
-    return state.apartments
+    return state.list
   }
 }

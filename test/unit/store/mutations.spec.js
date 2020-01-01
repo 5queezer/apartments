@@ -14,8 +14,8 @@ describe('Mutations', () => {
     mutations.add(state, apartmentFixture)
 
     // assert
-    expect(state.apartments.length).toBe(1)
-    expect(state.apartments[0]).toEqual(apartmentFixture)
+    expect(state.list.length).toBe(1)
+    expect(state.list[0]).toEqual(apartmentFixture)
   })
 
   it('throws error with entry of same id', () => {

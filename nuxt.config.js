@@ -35,7 +35,9 @@ module.exports = {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    // Dotenv
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Nuxt.js modules
@@ -46,7 +48,12 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Fontawesome Icon Font
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/font-awesome',
+    // Google Maps
+    ['nuxt-gmaps', {
+      key: process.env.MAPS_API_KEY
+      // you can use libraries: ['places']
+    }]
   ],
   /*
   ** Axios module configuration
@@ -62,6 +69,9 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
     }
   }
 }

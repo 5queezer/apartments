@@ -21,7 +21,7 @@ describe('Getters', () => {
     }
     state = {
       ...initialState,
-      apartments: [apartment]
+      list: [apartment]
     }
   })
 
