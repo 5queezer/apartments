@@ -2,6 +2,9 @@
 
 > Kasaz Coding Challenge see https://github.com/kasaz/coding-challenge
 
+Live preview [here](https://43erh.sse.codesandbox.io/ "redirect to codesandbox.io")
+
+
 ## Build Setup
 
 ``` bash
