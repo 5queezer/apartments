@@ -1,19 +1,18 @@
 <template>
   <b-container fluid>
-    <b-row>
+    <b-row class="mb-3">
       <b-col>
         <logo />
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mb-3">
       <b-col>
         <navbar />
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
+      <b-col id="listview">
         <list :apartments="list" />
-        <b-col />
       </b-col>
       <b-col />
     </b-row>
@@ -43,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#listview {
+
+}
+</style>
