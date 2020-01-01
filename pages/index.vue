@@ -10,7 +10,7 @@
         <navbar />
       </b-col>
     </b-row>
-    <b-row id="stretch">
+    <b-row id="stretch" class="pb-3">
       <b-col id="listview">
         <list :apartments="list" />
       </b-col>
@@ -41,30 +41,15 @@ export default {
   computed: {
     ...mapGetters('apartments', [ 'list' ]),
     locations () {
-      return [
-        {
-          lat: 44.933076,
-          lng: 15.629058
-        },
-        {
-          lat: 45.815,
-          lng: 15.9819
-        },
-        {
-          lat: 45.12,
-          lng: 16.21
-        }
-      ]
-
-      // const locations = []
-      // for (const apartment of this.list) {
-      //   locations.push({
-      //     id: parseInt(apartment.id),
-      //     lat: parseFloat(apartment.address.lat),
-      //     lng: parseFloat(apartment.address.long)
-      //   })
-      // }
-      // return locations
+      const locations = []
+      for (const apartment of this.$store.state.apartments.list) {
+        locations.push({
+          id: parseInt(apartment.id),
+          lat: parseFloat(apartment.address.lat),
+          lng: parseFloat(apartment.address.long)
+        })
+      }
+      return locations
     }
   },
   mounted () {
