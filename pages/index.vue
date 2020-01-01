@@ -14,7 +14,7 @@
       <b-col id="listview">
         <list :apartments="list" />
       </b-col>
-      <b-col>
+      <b-col class="pl-0">
         <maps :locations="locations" />
       </b-col>
     </b-row>
