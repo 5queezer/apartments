@@ -4,9 +4,8 @@
     <span class="text-secondary">code challenge</span>
   </div>
 </template>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Exo+2:800&display=swap');
 
+<style>
 .PojoniLogo {
   animation: 1s appear;
   font-family: 'Exo 2', sans-serif;
