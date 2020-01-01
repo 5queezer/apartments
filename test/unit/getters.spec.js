@@ -1,5 +1,4 @@
-import getters from '@/store/getters'
-import initialState from '@/store/state'
+import { getters, state as initialState } from '@/store/apartments'
 
 describe('Getters', () => {
   let state
@@ -28,7 +27,7 @@ describe('Getters', () => {
 
   it('gets Apartments', () => {
     // act
-    const apartments = getters.apartments(state)
+    const apartments = getters.list(state)
     // assert
     expect(apartments.length).toBe(1)
   })

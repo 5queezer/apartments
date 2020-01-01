@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import apartmentsFixture from './fixtures/apartments'
-import actions from '@/store/actions'
+import { actions } from '@/store/apartments'
 
 describe('Store actions', () => {
   let commit
@@ -11,10 +11,11 @@ describe('Store actions', () => {
 
   it('fetches apartments', async () => {
     // act
-    await actions.FETCH_APARTMENTS({ commit })
+    await actions.fetchAll({ commit })
     await flushPromises()
 
     // assert
-    expect(commit).toHaveBeenCalledWith('SET_APARTMENTS', apartmentsFixture)
+    expect(commit).toHaveBeenCalledTimes(apartmentsFixture.length)
+    expect(commit).toHaveBeenLastCalledWith('add', apartmentsFixture[apartmentsFixture.length - 1])
   })
 })
