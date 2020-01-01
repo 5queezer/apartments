@@ -5,6 +5,7 @@ faker.seed(1234)
 const ApartmentSpec = createSpec({
   title: faker.company.catchPhrase(),
   price: faker.random.number({ min: 50, max: 500 }),
+  sqm: faker.random.number({ min: 30, max: 300 }),
   bedrooms: faker.random.number({ min: 1, max: 5 }),
   bathrooms: faker.random.number({ min: 1, max: 5 }),
   picture: faker.image.city(300, 200, true),

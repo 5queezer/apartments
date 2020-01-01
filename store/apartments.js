@@ -16,6 +16,7 @@ export const mutations = {
       bedrooms: apartment.bedrooms,
       bathrooms: apartment.bathrooms,
       picture: apartment.picture,
+      sqm: apartment.sqm,
       address: {
         city: apartment.address.city,
         zip: apartment.address.zip,

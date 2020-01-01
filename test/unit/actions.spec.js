@@ -15,7 +15,7 @@ describe('Store actions', () => {
     await flushPromises()
 
     // assert
-    expect(commit).toHaveBeenCalledTimes(apartmentsFixture.length)
-    expect(commit).toHaveBeenLastCalledWith('add', apartmentsFixture[apartmentsFixture.length - 1])
+    expect(commit).toHaveBeenCalledTimes(10)
+    expect(commit).toHaveBeenLastCalledWith('add', apartmentsFixture)
   })
 })
