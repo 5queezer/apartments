@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import apartmentsFixture from './fixtures/apartments'
+import apartmentFixture from './fixtures/apartment'
 import { actions } from '@/store/apartments'
 
 describe('Store actions', () => {
@@ -16,6 +16,6 @@ describe('Store actions', () => {
 
     // assert
     expect(commit).toHaveBeenCalledTimes(10)
-    expect(commit).toHaveBeenLastCalledWith('add', apartmentsFixture)
+    expect(commit).toHaveBeenLastCalledWith('add', apartmentFixture)
   })
 })

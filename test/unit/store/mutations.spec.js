@@ -1,4 +1,4 @@
-import apartments from './fixtures/apartments'
+import apartmentFixture from './fixtures/apartment'
 import { mutations, state as initialState } from '@/store/apartments'
 
 describe('Mutations', () => {
@@ -11,21 +11,21 @@ describe('Mutations', () => {
 
   it('adds a new apartment', () => {
     // act
-    mutations.add(state, apartments[0])
+    mutations.add(state, apartmentFixture)
 
     // assert
     expect(state.apartments.length).toBe(1)
-    expect(state.apartments[0]).toEqual(apartments[0])
+    expect(state.apartments[0]).toEqual(apartmentFixture)
   })
 
   it('throws error with entry of same id', () => {
     // act
-    const m = (apartment) => { mutations.add(state, apartment) }
+    const m = (apartment) => { mutations.add(state, apartmentFixture) }
 
     // first call
-    expect(() => m({ ...apartments[0], id: 0 })).not.toThrowError()
+    expect(() => m({ ...apartmentFixture, id: 0 })).not.toThrowError()
 
     // second call
-    expect(() => m({ ...apartments[1], id: 0 })).toThrowErrorMatchingSnapshot()
+    expect(() => m({ ...apartmentFixture, id: 0 })).toThrowErrorMatchingSnapshot()
   })
 })
