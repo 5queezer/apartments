@@ -1,6 +1,6 @@
 # Kasaz
 
-> Kasaz Coding Challenge
+> Kasaz Coding Challenge see https://github.com/kasaz/coding-challenge
 
 ## Build Setup
 
