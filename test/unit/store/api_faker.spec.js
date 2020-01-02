@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import api from '@/assets/api.faker'
+import api from '@/store/api.faker'
 
 describe('Api', () => {
   let result

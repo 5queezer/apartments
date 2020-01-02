@@ -1,4 +1,4 @@
-import api from '@/assets/api.faker'
+import api from './api.faker'
 
 export const state = () => ({
   list: []
