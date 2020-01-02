@@ -41,7 +41,6 @@ export default {
   computed: {
     ...mapGetters('apartments', [ 'list' ]),
     locations () {
-<<<<<<< HEAD
       const locations = []
       for (const apartment of this.$store.state.apartments.list) {
         locations.push({
@@ -51,32 +50,6 @@ export default {
         })
       }
       return locations
-=======
-      return [
-        {
-          lat: 44.933076,
-          lng: 15.629058
-        },
-        {
-          lat: 45.815,
-          lng: 15.9819
-        },
-        {
-          lat: 45.12,
-          lng: 16.21
-        }
-      ]
-
-      // const locations = []
-      // for (const apartment of this.list) {
-      //   locations.push({
-      //     id: parseInt(apartment.id),
-      //     lat: parseFloat(apartment.address.lat),
-      //     lng: parseFloat(apartment.address.long)
-      //   })
-      // }
-      // return locations
->>>>>>> list
     }
   },
   mounted () {
