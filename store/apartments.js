@@ -7,6 +7,8 @@ export const state = () => ({
 export const mutations = {
   add (state, apartment) {
     for (const entry of state.list) {
+      if (typeof entry.lat === 'undefined' || typeof entry.lng === 'undefined') { continue }
+      if (typeof entry.id === 'undefined') { entry.id = Math.max(state.list.map(s => s.id)) + 1 }
       if (entry.id === apartment.id) { throw (new Error('double entry')) }
     }
     state.list.push({

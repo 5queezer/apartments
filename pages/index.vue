@@ -11,10 +11,10 @@
       </b-col>
     </b-row>
     <b-row id="stretch" class="pb-3">
-      <b-col id="listview">
+      <b-col id="listview" cols="6">
         <list :apartments="list" />
       </b-col>
-      <b-col class="pl-0">
+      <b-col class="pl-0" cols="6">
         <maps :locations="locations" :currentLocation="currentLocation" />
       </b-col>
     </b-row>

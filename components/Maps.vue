@@ -15,6 +15,7 @@
     >
       <GMapInfoWindow>
         <code>
+          id: {{ location.id }},
           lat: {{ location.lat }},
           lng: {{ location.lng }}
         </code>

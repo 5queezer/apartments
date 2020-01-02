@@ -26,7 +26,7 @@ function format (d) {
 }
 
 function getApartments (params) {
-  return api.get('search/update_map_results', { params })
+  return api.get('/search/update_map_results', { params })
     .then(function (response) {
       const data = response.data.markers.map(format)
       return data
