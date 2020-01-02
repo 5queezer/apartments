@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-col>
-      <b-form-select v-model="min" :options="data" />
+      <b-form-select v-model="min" :options="data" class="form-inline" />
     </b-col>
     <b-col>
       <b-form-select v-model="max" :options="data" />

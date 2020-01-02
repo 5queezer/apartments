@@ -5,7 +5,7 @@
     :cluster="{options: {styles: clusterStyle}}"
     :center="currentLocation"
     :options="{fullscreenControl: false, styles: mapStyle}"
-    :zoom="6"
+    :zoom="10"
   >
     <GMapMarker
       v-for="location in locations"
@@ -24,23 +24,19 @@
 </template>
 
 <script>
+/* eslint-disable vue/require-default-prop */
+
 /*
       :options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
 */
 
 export default {
   props: {
-    locations: {
-      type: Array,
-      required: true
-    }
+    locations: Array,
+    currentLocation: Object
   },
   data () {
     return {
-      currentLocation: {
-        lat: this.locations.size > 0 ? this.locations[0].lat : 0,
-        lng: this.locations.size > 0 ? this.locations[0].lng : 0
-      },
       // pins: {
       //   selected: 'data:image/png;base64,iVBORw0KGgo...',
       //   notSelected: 'data:image/png;base64,iVBORw0KGgo...'

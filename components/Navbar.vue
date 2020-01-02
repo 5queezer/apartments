@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="light" variant="light" toggleable="lg">
+  <b-navbar toggleable="lg">
     <b-nav-form>
       <search />
     </b-nav-form>
