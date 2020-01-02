@@ -1,19 +1,24 @@
-import api from './api.kasaz'
+import api from './api.faker'
 
 export const state = () => ({
-  list: []
+  list: [],
+  current: undefined
 })
 
 export const mutations = {
   add (state, apartment) {
-    for (const entry of state.list) {
-      if (typeof entry.lat === 'undefined' || typeof entry.lng === 'undefined') { continue }
-      if (typeof entry.id === 'undefined') { entry.id = Math.max(state.list.map(s => s.id)) + 1 }
-      if (entry.id === apartment.id) { throw (new Error('double entry')) }
+    if (typeof apartment.address.lat === 'undefined' || typeof apartment.address.long === 'undefined') {
+      throw new TypeError(`malformed geo location { ${apartment.lat} ${apartment.long} }`)
     }
-    state.list.push({
-      ...apartment
-    })
+    if (typeof apartment.id === 'undefined') {
+      apartment.id = Math.max(state.list.map(s => s.id)) + 1
+    } else {
+      for (const entry of state.list) {
+        if (entry.id === apartment.id) { throw new Error('double entry') }
+      }
+    }
+
+    state.list.push(apartment)
   }
 }
 

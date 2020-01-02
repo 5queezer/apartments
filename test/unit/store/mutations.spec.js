@@ -1,3 +1,4 @@
+import { _ } from 'underscore'
 import apartmentFixture from './fixtures/apartment'
 import { mutations, state as initialState } from '@/store/apartments'
 
@@ -20,12 +21,12 @@ describe('Mutations', () => {
 
   it('throws error with entry of same id', () => {
     // act
-    const m = (apartment) => { mutations.add(state, apartmentFixture) }
+    const add = () => { mutations.add(state, apartmentFixture) }
 
     // first call
-    expect(() => m({ ...apartmentFixture, id: 0 })).not.toThrowError()
+    expect(add).not.toThrowError()
 
     // second call
-    expect(() => m({ ...apartmentFixture, id: 0 })).toThrowErrorMatchingSnapshot()
+    expect(add).toThrowErrorMatchingSnapshot()
   })
 })
