@@ -1,4 +1,4 @@
-import api from './api.faker'
+import api from './api.kasaz'
 
 export const state = () => ({
   list: []
@@ -32,7 +32,11 @@ export const actions = {
   fetchAll ({ commit }) {
     return new Promise(async (resolve, reject) => {
       try {
-        const apartments = await api.getApartments()
+        const params = {
+          'location[city]': 'Barcelona',
+          'filters[price][min]': 1.5e6
+        }
+        const apartments = await api.getApartments(params)
         if (!apartments) { reject(new Error('api.getApartments() result is empty')) }
         for (const a of apartments) { commit('add', a) }
         resolve(apartments.length)

@@ -3,7 +3,7 @@
     <b-card
       v-for="a in apartments"
       :key="a.id"
-      :img-src="a.picture"
+      :img-src="a.picture[0]"
       :img-alt="a.title"
       img-top
     >

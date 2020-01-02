@@ -8,7 +8,7 @@ const ApartmentSpec = createSpec({
   sqm: faker.random.number({ min: 30, max: 300 }),
   bedrooms: faker.random.number({ min: 1, max: 5 }),
   bathrooms: faker.random.number({ min: 1, max: 5 }),
-  picture: faker.image.city(300, 200, true),
+  picture: [faker.image.city(300, 200, true)],
   address: {
     city: faker.address.city(),
     zip: faker.address.zipCode(),
