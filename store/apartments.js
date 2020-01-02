@@ -10,20 +10,7 @@ export const mutations = {
       if (entry.id === apartment.id) { throw (new Error('double entry')) }
     }
     state.list.push({
-      id: apartment.id,
-      title: apartment.title,
-      price: apartment.price,
-      bedrooms: apartment.bedrooms,
-      bathrooms: apartment.bathrooms,
-      picture: apartment.picture,
-      sqm: apartment.sqm,
-      address: {
-        city: apartment.address.city,
-        zip: apartment.address.zip,
-        street: apartment.address.street,
-        lat: apartment.address.lat,
-        long: apartment.address.long
-      }
+      ...apartment
     })
   }
 }
