@@ -4,15 +4,17 @@ import { mutations, state as initialState } from '@/store/apartments'
 
 describe('Mutations', () => {
   let state
+  const add = (apartment) => { mutations.add(state, apartment || apartmentFixture) }
+  const deepCopy = other => JSON.parse(JSON.stringify(other))
 
   beforeEach(() => {
     // reset state with deep copy
-    state = { ...JSON.parse(JSON.stringify(initialState())) }
+    state = deepCopy(initialState())
   })
 
   it('adds a new apartment', () => {
     // act
-    mutations.add(state, apartmentFixture)
+    add()
 
     // assert
     expect(state.list.length).toBe(1)
@@ -20,13 +22,22 @@ describe('Mutations', () => {
   })
 
   it('throws error with entry of same id', () => {
-    // act
-    const add = () => { mutations.add(state, apartmentFixture) }
-
     // first call
     expect(add).not.toThrowError()
 
     // second call
     expect(add).toThrowErrorMatchingSnapshot()
+  })
+
+  it('can set an apartment with index 1', () => {
+    const fixture0 = deepCopy(apartmentFixture)
+    fixture0.id = 0
+    add(fixture0)
+    const fixture1 = deepCopy(apartmentFixture)
+    fixture1.id = 1
+    add(fixture1)
+
+    mutations.set(state, 1)
+    expect(state.current).toEqual(1)
   })
 })

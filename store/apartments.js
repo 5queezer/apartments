@@ -19,6 +19,9 @@ export const mutations = {
     }
 
     state.list.push(apartment)
+  },
+  set (state, index) {
+    state.current = index
   }
 }
 
@@ -44,5 +47,8 @@ export const actions = {
 export const getters = {
   list: (state) => {
     return state.list
+  },
+  current: (state) => {
+    return state.list[state.current]
   }
 }
