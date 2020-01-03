@@ -3,7 +3,7 @@
     @mouseleave="stop(apartment.id)"
     @mouseenter="next(apartment.id)"
     @click="set(apartment.id)"
-    :class="currentId == apartment.id ? 'shadow' : ''"
+    :class="currentId == apartment.id ? 'shadow selected' : ''"
     img-top
     class="apartment-card"
   >
@@ -24,7 +24,7 @@
       </div>
       <div class="banner p-1 pl-3">
         <b-card-title class="m-0">
-          <span class="text-light">{{ apartment.price | locale }} € </span><br>
+          <span class="text-light">{{ apartment.price | locale }} € </span>
           <small class="text-dark">{{ parseInt(apartment.price / apartment.sqm) | locale }} €/m²</small>
         </b-card-title>
       </div>
@@ -63,7 +63,7 @@ export default {
   },
   // eslint-disable-next-line vue/require-prop-types
   props: ['apartment'],
-  watch: {
+  computed: {
     currentId () {
       return this.$store.state.apartments.id
     }
@@ -90,7 +90,14 @@ export default {
 
 <style lang="scss">
 .apartment-card {
-  & .carousel-item img {
+  transition: transform .2s;
+
+  &.selected {
+    border-width: 2px;
+    transform: scale(0.98);
+  }
+
+  .carousel-item img {
     height: 200px;
   }
 
@@ -102,23 +109,30 @@ export default {
     right: 0;
     left: 0;
     color: white;
-    font-family: 'Exo 2', sans-serif;
+
+    span {
+      font-family: 'Exo 2', sans-serif;
+      text-shadow: 0px 0px 5px black;
+    }
+
+    small {
+      font-weight: bold;
+      text-shadow: 0px 0px 5px white;
+    }
+
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+
+  .card-header {
+    position: relative;
   }
 
   > .card-body {
     padding: 0;
-
-    > .card-header {
-      position: relative;
-
-      span {
-        text-shadow: 0px 0px 5px black;
-      }
-
-      small {
-        text-shadow: 0px 0px 5px white;
-      }
-    }
 
     > .card-body {
       height: 140px;
