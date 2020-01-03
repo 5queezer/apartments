@@ -1,12 +1,12 @@
 <template>
-  <b-input-group>
+  <b-form-row>
     <b-col>
-      <b-form-select v-model="min" :options="data" class="form-inline" />
+      <b-form-select v-model="min" :options="dataMin" />
     </b-col>
     <b-col>
-      <b-form-select v-model="max" :options="data" />
+      <b-form-select v-model="max" :options="dataMax" />
     </b-col>
-  </b-input-group>
+  </b-form-row>
 </template>
 
 <script>
@@ -19,19 +19,28 @@ export default {
     }
   },
   // eslint-disable-next-line vue/require-prop-types
-  props: ['append', 'values'],
+  props: ['unit', 'values', 'name'],
   data: () => {
     return {
-      min: undefined,
-      max: undefined
+      min: 0,
+      max: 0
     }
   },
   computed: {
-    data () {
+    dataMin () {
+      return this.selectData('min')
+    },
+    dataMax () {
+      return this.selectData('max')
+    }
+  },
+  methods: {
+    selectData (str) {
       return _.map(this.values, (value) => {
+        const valueLocale = this.$options.filters.locale(value)
         return {
           value,
-          text: value ? `${this.$options.filters.locale(value)} ${this.append}` : '',
+          text: value ? `${valueLocale} ${this.unit}` : `-- ${this.name} ${str} --`,
           disabled: !value
         }
       })

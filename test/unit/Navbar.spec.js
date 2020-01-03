@@ -21,12 +21,12 @@ describe('Page Elements', () => {
   })
 
   test('price range matches', () => {
-    const range = navbar.vm.$props.priceRange
+    const range = navbar.vm.priceRange
     expect(range).toMatchSnapshot()
   })
 
   test('area range matches', () => {
-    const range = navbar.vm.$props.areaRange
+    const range = navbar.vm.areaRange
     expect(range).toMatchSnapshot()
   })
 })

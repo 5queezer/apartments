@@ -11,53 +11,31 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form-price" text="Price">
-          <b-dropdown-form>
-            <b-form-row>
-              <range
-                :values="priceRange"
-                append="€"
-              />
-            </b-form-row>
-          </b-dropdown-form>
-        </b-nav-item-dropdown>
+        <range
+          :values="priceRange"
+          name="Price"
+          unit="€"
+        />
       </b-navbar-nav>
 
       <b-navbar-nav>
-        <b-nav-item-dropdown text="Area">
-          <b-dropdown-form>
-            <b-form-row>
-              <range
-                :values="areaRange"
-                append="m²"
-              />
-            </b-form-row>
-          </b-dropdown-form>
-        </b-nav-item-dropdown>
+        <range
+          :values="areaRange"
+          name="Area"
+          unit="m²"
+        />
       </b-navbar-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown ref="dropdown" text="Bedrooms">
-          <b-dropdown-form>
-            <b-form-radio-group
-              v-model="bedrooms"
-              :options="bedroomRange"
-              :selected="bedroomRange[0]"
-              buttons
-            />
-          </b-dropdown-form>
-        </b-nav-item-dropdown>
+        <b-form inline>
+          <label class="mr-sm-2" for="inline-form-bedrooms">Bedrooms</label>
+          <b-form-select id="inline-form-bedrooms" v-model="bedrooms" :options="bedroomRange" />
+        </b-form>
       </b-navbar-nav>
       <b-navbar-nav>
-        <b-nav-item-dropdown id="dropdown-form4" ref="dropdown" text="Bathroms">
-          <b-dropdown-form>
-            <b-form-radio-group
-              v-model="bathrooms"
-              :options="bathroomRange"
-              :selected="bathroomRange[0]"
-              buttons
-            />
-          </b-dropdown-form>
-        </b-nav-item-dropdown>
+        <b-form inline>
+          <label class="mr-sm-2" for="inline-form-bathrooms">Bathrooms</label>
+          <b-form-select id="inline-form-bathrooms" v-model="bathrooms" :options="bathroomRange" />
+        </b-form>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -73,28 +51,24 @@ export default {
     Search,
     Range
   },
-  props: {
-    priceRange: {
-      type: Array,
-      default () { return _.range(0, 350e3, 25e3).concat(_.range(350e3, 600e3, 50e3)) }
-    },
-    areaRange: {
-      type: Array,
-      default () { return _.range(0, 40, 5).concat(_.range(40, 151, 10)).concat(200, 300) }
-    },
-    bedroomRange: {
-      type: Array,
-      default () { return [{ text: 'All', value: undefined }].concat(_.range(1, 6)) }
-    },
-    bathroomRange: {
-      type: Array,
-      default () { return [{ text: 'All', value: undefined }].concat(_.range(1, 6)) }
-    }
-  },
   data () {
     return {
       bedrooms: undefined,
       bathrooms: undefined
+    }
+  },
+  computed: {
+    priceRange () {
+      return _.range(0, 350e3, 25e3).concat(_.range(350e3, 600e3, 50e3))
+    },
+    areaRange () {
+      return _.range(0, 40, 5).concat(_.range(40, 151, 10)).concat(200, 300)
+    },
+    bedroomRange () {
+      return _.range(1, 5).concat({ text: '5+', value: Infinity })
+    },
+    bathroomRange () {
+      return _.range(1, 5).concat({ text: '5+', value: Infinity })
     }
   }
 }
