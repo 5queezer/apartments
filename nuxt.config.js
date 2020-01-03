@@ -1,6 +1,10 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 module.exports = {
+  env: {
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+  },
+
   mode: 'universal',
   /*
   ** Headers of the page
@@ -30,6 +34,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '@/plugins/google-maps'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,11 +55,8 @@ module.exports = {
     '@nuxtjs/axios',
     // Fontawesome Icon Font
     '@nuxtjs/font-awesome',
-    // Google Maps
-    ['nuxt-gmaps', {
-      key: process.env.MAPS_API_KEY
-      // you can use libraries: ['places']
-    }]
+    // dotenv
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration

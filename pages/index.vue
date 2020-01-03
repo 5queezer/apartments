@@ -15,7 +15,7 @@
         <list :apartments="list" />
       </b-col>
       <b-col class="pl-0" cols="6">
-        <maps :locations="locations" :currentLocation="currentLocation" />
+        <maps :locations="locations" />
       </b-col>
     </b-row>
   </b-container>
@@ -38,11 +38,6 @@ export default {
     List,
     Maps
   },
-  data () {
-    return {
-      currentLocation: { lat: 0, lng: 0 }
-    }
-  },
   computed: {
     ...mapGetters('apartments', [ 'list' ]),
     locations () {
@@ -59,7 +54,6 @@ export default {
   },
   mounted () {
     this.fetchAll()
-    this.currentLocation = this.locations[0]
   },
   methods: {
     ...mapActions('apartments', [ 'fetchAll' ])

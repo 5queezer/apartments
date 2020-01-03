@@ -3,7 +3,6 @@
     <b-nav-form>
       <search />
     </b-nav-form>
-
     <b-navbar-toggle target="nav-collapse">
       <b-nav-text>
         Filter <i class="fa fa-chevron-down" />

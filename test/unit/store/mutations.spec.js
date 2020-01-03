@@ -29,15 +29,15 @@ describe('Mutations', () => {
     expect(add).toThrowErrorMatchingSnapshot()
   })
 
-  it('can set an apartment with index 1', () => {
+  it('can set an apartment with id 10', () => {
     const fixture0 = deepCopy(apartmentFixture)
     fixture0.id = 0
     add(fixture0)
     const fixture1 = deepCopy(apartmentFixture)
-    fixture1.id = 1
+    fixture1.id = 10
     add(fixture1)
 
-    mutations.set(state, 1)
-    expect(state.current).toEqual(1)
+    mutations.set(state, 10)
+    expect(state.id).toEqual(10)
   })
 })

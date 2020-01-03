@@ -1,8 +1,8 @@
-import api from './api.faker'
+import api from './api.kasaz'
 
 export const state = () => ({
   list: [],
-  current: undefined
+  id: undefined
 })
 
 export const mutations = {
@@ -20,8 +20,8 @@ export const mutations = {
 
     state.list.push(apartment)
   },
-  set (state, index) {
-    state.current = index
+  set (state, id) {
+    state.id = id
   }
 }
 
@@ -45,10 +45,10 @@ export const actions = {
 }
 
 export const getters = {
-  list: (state) => {
+  list (state) {
     return state.list
   },
-  current: (state) => {
-    return state.list[state.current]
+  current (state) {
+    return state.list.find(apartment => apartment.id)
   }
 }

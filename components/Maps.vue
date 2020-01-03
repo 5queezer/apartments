@@ -1,48 +1,25 @@
 <template>
-  <GMap
-    id="gmap"
-    ref="gMap"
-    :cluster="{options: {styles: clusterStyle}}"
-    :center="currentLocation"
-    :options="{fullscreenControl: false, styles: mapStyle}"
-    :zoom="10"
-  >
-    <GMapMarker
-      v-for="location in locations"
-      :key="location.id"
-      :position="location"
-      @click="currentLocation = location"
-    >
-      <GMapInfoWindow>
-        <code>
-          id: {{ location.id }},
-          lat: {{ location.lat }},
-          lng: {{ location.lng }}
-        </code>
-      </GMapInfoWindow>
-    </GMapMarker>
-  </GMap>
+  <gmap-map id="gmap" :center="currentLocation" :map-type-id="mapTypeId" :zoom="zoom">
+    <gmap-marker
+      v-for="(l, index) in locations"
+      :key="index"
+      :position="l"
+      @click="set(l.id)"
+    />
+  </gmap-map>
 </template>
 
 <script>
 /* eslint-disable vue/require-default-prop */
 
-/*
-      :options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
-*/
-
 export default {
   props: {
-    locations: Array,
-    currentLocation: Object
+    locations: Array
   },
   data () {
     return {
-      // pins: {
-      //   selected: 'data:image/png;base64,iVBORw0KGgo...',
-      //   notSelected: 'data:image/png;base64,iVBORw0KGgo...'
-      // },
-      mapStyle: [],
+      zoom: 10,
+      mapTypeId: 'terrain',
       clusterStyle: [
         {
           url: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
@@ -52,7 +29,21 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    currentLocation () {
+      const id = this.$store.state.apartments.id
+      const current = this.$store.state.apartments.list.find(a => a.id === id)
+      const location = current ? { id, lat: parseFloat(current.address.lat), lng: parseFloat(current.address.long) } : { id, lat: 0, lng: 0 }
+      return location
+    }
+  },
+  methods: {
+    set (id) {
+      this.$store.commit('apartments/set', id)
+    }
   }
+
 }
 </script>
 

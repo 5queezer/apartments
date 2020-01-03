@@ -18,8 +18,8 @@ describe('Getters', () => {
   })
 
   it('current apartment object', () => {
-    state.list = [apartmentFixture]
-    state.current = 0
+    state.list = [Object.assign(apartmentFixture, { id: 10 })]
+    state.id = 10
     const apartment = getters.current(state)
     // assert
     expect(apartment).toEqual(apartmentFixture)
