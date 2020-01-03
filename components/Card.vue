@@ -31,7 +31,7 @@
     </b-card-header>
 
     <b-card-body>
-      <b-card-sub-title>
+      <b-card-sub-title class="mb-2">
         <span>{{ apartment.address.street }}</span>
         <small class="text">{{ apartment.address.city }}</small>
       </b-card-sub-title>
