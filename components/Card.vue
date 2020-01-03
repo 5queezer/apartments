@@ -1,7 +1,7 @@
 <template>
   <b-card
-    @mouseleave="stop(apartment.id)"
-    @mouseenter="next(apartment.id)"
+    @mouseleave="stop(apartment.id); pause = true"
+    @mouseenter="delayNext(apartment.id); pause = false"
     @click="set(apartment.id)"
     :class="currentId == apartment.id ? 'shadow selected' : ''"
     img-top
@@ -22,7 +22,7 @@
           />
         </b-carousel>
       </div>
-      <div class="banner p-1 pl-3">
+      <div class="banner p-1 pl-3 pr-3">
         <b-card-title class="m-0">
           <span class="text-light">{{ apartment.price | locale }} € </span>
           <small class="text-dark">{{ parseInt(apartment.price / apartment.sqm) | locale }} €/m²</small>
@@ -83,6 +83,12 @@ export default {
     },
     set (id) {
       this.$store.commit('apartments/set', id)
+    },
+    delayNext (id) {
+      const vm = this
+      setTimeout(() => {
+        if (!vm.pause) { vm.next(id) }
+      }, 1500)
     }
   }
 }
@@ -91,6 +97,7 @@ export default {
 <style lang="scss">
 .apartment-card {
   transition: transform .2s;
+  cursor: pointer;
 
   &.selected {
     border-width: 2px;
