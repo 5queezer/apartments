@@ -30,14 +30,23 @@ describe('Mutations', () => {
   })
 
   it('can set an apartment with id 10', () => {
+    mutations.set(state, 10)
+    expect(state.id).toEqual(10)
+  })
+
+  it('can reset the store', () => {
     const fixture0 = deepCopy(apartmentFixture)
     fixture0.id = 0
     add(fixture0)
+
     const fixture1 = deepCopy(apartmentFixture)
     fixture1.id = 10
     add(fixture1)
 
     mutations.set(state, 10)
-    expect(state.id).toEqual(10)
+    mutations.reset(state)
+
+    expect(state.id).toStrictEqual(undefined)
+    expect(state.list).toStrictEqual([])
   })
 })

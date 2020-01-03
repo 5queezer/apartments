@@ -22,6 +22,10 @@ export const mutations = {
   },
   set (state, id) {
     state.id = id
+  },
+  reset (state) {
+    state.list = []
+    state.id = undefined
   }
 }
 
