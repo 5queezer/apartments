@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Vuex, { mapGetters, mapActions } from 'vuex'
+import Vuex, { mapGetters, mapActions, mapMutations } from 'vuex'
 import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
 import Navbar from '~/components/Navbar.vue'
@@ -52,11 +52,14 @@ export default {
       return locations
     }
   },
-  mounted () {
-    this.fetchAll()
+  async mounted () {
+    await this.fetchAll()
+    const firstId = this.list[0].id
+    firstId && this.set(firstId)
   },
   methods: {
-    ...mapActions('apartments', [ 'fetchAll' ])
+    ...mapActions('apartments', [ 'fetchAll' ]),
+    ...mapMutations('apartments', ['set'])
   }
 }
 </script>
