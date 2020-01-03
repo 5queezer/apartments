@@ -18,7 +18,7 @@ export default {
   },
   data () {
     return {
-      zoom: 10,
+      zoom: 15,
       mapTypeId: 'terrain',
       clusterStyle: [
         {

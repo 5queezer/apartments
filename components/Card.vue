@@ -25,14 +25,15 @@
       <div class="banner p-1 pl-3">
         <b-card-title class="m-0">
           <span class="text-light">{{ apartment.price | locale }} € </span><br>
-          <small class="text-info">{{ parseInt(apartment.price / apartment.sqm) | locale }} €/m²</small>
+          <small class="text-dark">{{ parseInt(apartment.price / apartment.sqm) | locale }} €/m²</small>
         </b-card-title>
       </div>
     </b-card-header>
 
     <b-card-body>
       <b-card-sub-title>
-        {{ apartment.address.city }}, {{ apartment.address.street }}
+        <span>{{ apartment.address.street }}</span>
+        <small class="text">{{ apartment.address.city }}</small>
       </b-card-sub-title>
       <p>
         {{ apartment.title }}
@@ -94,7 +95,7 @@ export default {
   }
 
   .banner {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(255,255,255,0.5);
     position: absolute;
     z-index: 1;
     bottom: 0;
@@ -109,11 +110,18 @@ export default {
 
     > .card-header {
       position: relative;
-      text-shadow: 2px 2px 4px black;
+
+      span {
+        text-shadow: 0px 0px 5px black;
+      }
+
+      small {
+        text-shadow: 0px 0px 5px white;
+      }
     }
 
     > .card-body {
-      height: 150px;
+      height: 140px;
       overflow-y: auto;
 
       p:last-of-type {
