@@ -10,7 +10,11 @@ describe('Store actions', () => {
 
   it('fetches apartments', async () => {
     // act
-    await actions.fetchAll({ commit })
+    const params = {
+      'location[city]': 'Barcelona',
+      'filters[price][min]': 1.5e6
+    }
+    await actions.fetch({ commit }, params)
     await flushPromises()
 
     // assert

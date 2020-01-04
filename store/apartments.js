@@ -2,7 +2,9 @@ import api from './api.kasaz'
 
 export const state = () => ({
   list: [],
-  id: undefined
+  id: undefined,
+  loading: false,
+  viewport: {}
 })
 
 export const mutations = {
@@ -25,21 +27,25 @@ export const mutations = {
   },
   reset (state) {
     state.list = []
-    state.id = undefined
+  },
+  loading (state, setting) {
+    state.loading = !!setting
+  },
+  viewport (state, values) {
+    Object.assign(state.viewport, values)
   }
 }
 
 export const actions = {
-  fetchAll ({ commit }) {
+  fetch ({ commit }, params) {
     return new Promise(async (resolve, reject) => {
       try {
-        const params = {
-          'location[city]': 'Barcelona',
-          'filters[price][min]': 1.5e6
-        }
+        commit('loading', true)
         const apartments = await api.getApartments(params)
+        commit('reset')
         if (!apartments) { reject(new Error('api.getApartments() result is empty')) }
-        for (const a of apartments) { commit('add', a) }
+        apartments.forEach(a => commit('add', a))
+        commit('loading', false)
         resolve(apartments.length)
       } catch (error) {
         reject(error)

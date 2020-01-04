@@ -46,7 +46,6 @@ describe('Mutations', () => {
     mutations.set(state, 10)
     mutations.reset(state)
 
-    expect(state.id).toStrictEqual(undefined)
     expect(state.list).toStrictEqual([])
   })
 })
