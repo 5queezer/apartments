@@ -1,5 +1,15 @@
 <template>
-  <gmap-map id="gmap" :center="currentLocation" :map-type-id="mapTypeId" :zoom="zoom">
+  <gmap-map
+    id="gmap"
+    ref="gmap"
+    :center="currentLocation"
+    :map-type-id="mapTypeId"
+    :zoom="zoom"
+    @bounds_changed="update($event)"
+    @idle="commit()"
+    @dragend="user = true"
+    @zoom_changed="user = true"
+  >
     <gmap-marker
       v-for="(l, index) in locations"
       :key="index"
@@ -10,11 +20,12 @@
 </template>
 
 <script>
-/* eslint-disable vue/require-default-prop */
+import { mapGetters, mapActions } from 'vuex'
+// import { _ } from 'underscore'
 
 export default {
   props: {
-    locations: Array
+    locations: { type: Array, default: () => [] }
   },
   data () {
     return {
@@ -31,6 +42,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('apartments', ['current']),
     currentLocation () {
       const id = this.$store.state.apartments.id
       const current = this.$store.state.apartments.list.find(a => a.id === id)
@@ -39,8 +51,35 @@ export default {
     }
   },
   methods: {
+    ...mapActions('apartments', [ 'fetch' ]),
     set (id) {
       this.$store.commit('apartments/set', id)
+    },
+    update (event) {
+      if (!event) { return }
+      const { ka, pa } = event
+      this.map = {
+        neLat: pa.h,
+        neLng: ka.h,
+        swLat: pa.g,
+        swLng: ka.g
+      }
+    },
+    async commit (event) {
+      this.$store.commit('apartments/viewport', this.map)
+
+      if (this.user === true) {
+        const params = {
+          'viewport[neLat]': this.map.neLat,
+          'viewport[neLng]': this.map.neLng,
+          'viewport[swLat]': this.map.swLat,
+          'viewport[swLng]': this.map.swLng,
+          // 'location[city]': 'Barcelona',
+          'filters[price][min]': 1.5e6
+        }
+        await this.fetch(params)
+        this.user = false
+      }
     }
   }
 

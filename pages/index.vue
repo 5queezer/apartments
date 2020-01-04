@@ -12,9 +12,10 @@
     </b-row>
     <b-row id="stretch" class="pb-3">
       <b-col id="listview" cols="6">
-        <list :apartments="list" />
+        <b-spinner v-if="loading && !locations" label="Loading..." />
+        <list v-else :apartments="list" />
       </b-col>
-      <b-col class="pl-0" cols="6">
+      <b-col id="mapsview" class="pl-0" cols="6">
         <maps :locations="locations" />
       </b-col>
     </b-row>
@@ -40,6 +41,9 @@ export default {
   },
   computed: {
     ...mapGetters('apartments', [ 'list' ]),
+    loading () {
+      return this.$store.state.apartments.loading
+    },
     locations () {
       const locations = []
       for (const apartment of this.$store.state.apartments.list) {
@@ -53,12 +57,16 @@ export default {
     }
   },
   async mounted () {
-    await this.fetchAll()
-    const firstId = this.list[0].id
-    firstId && this.set(firstId)
+    const params = {
+      'location[city]': 'Barcelona',
+      'filters[location]': 'Eixample, Barcelona, Provinz Barcelona'
+    }
+    await this.fetch(params)
+    // const firstId = this.list[0].id
+    // firstId && this.set(firstId)
   },
   methods: {
-    ...mapActions('apartments', [ 'fetchAll' ]),
+    ...mapActions('apartments', [ 'fetch' ]),
     ...mapMutations('apartments', ['set'])
   }
 }
@@ -72,9 +80,14 @@ export default {
 }
 #stretch {
   overflow: hidden;
+  height: 100%;
 }
 #listview {
   height: 100%;
   overflow-y: scroll;
+}
+#mapsview {
+  height: 100%;
+  overflow: hidden;
 }
 </style>
