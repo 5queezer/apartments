@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import _ from 'underscore'
 
 export default {
   filters: {
@@ -36,7 +35,7 @@ export default {
   },
   methods: {
     selectData (str) {
-      return _.map(this.values, (value) => {
+      return this.values.map((value) => {
         const valueLocale = this.$options.filters.locale(value)
         return {
           value,
